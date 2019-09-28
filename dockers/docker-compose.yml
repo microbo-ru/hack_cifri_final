@@ -50,23 +50,14 @@ services:
     ports:
       - $SERVER_PORT:80
 
-  swagger-ui:
-    image: swaggerapi/swagger-ui
-    container_name: "swagger-ui"
-    env_file: .env
-    environment:
-      - SWAGGER_JSON=workflow.yml
-    ports:
-      - $SWAGGER_UI_PORT:8080
+  3dparty_api:
+    image: node:8.16.1-alpine
     volumes:
-      - ./../doc/workflow.yml:/workflow.yml
-  # swagger-editor:
-  #   image: swaggerapi/swagger-editor
-  #   container_name: "swagger-editor"
-  #   ports:
-  #     - "8081:8080"
-  #   environment:
-  #     SWAGGER_JSON: /workflow.json
+      - ./../3dparty_api:/usr/src/app
+    working_dir: /usr/src/app
+    command: npm start
+    ports:
+      - $SERVICES_FACADE_PORT:8080
 
 volumes:
   rest_server:
