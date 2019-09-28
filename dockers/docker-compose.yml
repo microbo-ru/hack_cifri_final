@@ -1,8 +1,7 @@
 version: "2"
 services:
-  
   camunda:
-    image: camunda/camunda-bpm-platform:latest
+    image: xhoopoe/camunda:latest
     ports:
       - "8080:8080"
     depends_on:
@@ -13,7 +12,6 @@ services:
       - DB_USERNAME=camunda
       - DB_PASSWORD=camunda
       - WAIT_FOR=db:5432
-  
   db:
     image: postgres
     restart: on-failure
@@ -23,3 +21,22 @@ services:
       - POSTGRES_DB=camunda
       - POSTGRES_USER=camunda
       - POSTGRES_PASSWORD=camunda
+  # swagger-editor:
+  #   image: swaggerapi/swagger-editor
+  #   container_name: "swagger-editor"
+  #   ports:
+  #     - "8081:8080"
+  #   environment:
+  #     SWAGGER_JSON: /openapi.json
+
+  # swagger-ui:
+  #   image: swaggerapi/swagger-ui
+  #   container_name: "swagger-ui"
+  #   ports:
+  #     - "8082:8080"
+  #   volumes:
+  #     - ./../api/openapi.json:/openapi.json
+  #   environment:
+  #     SWAGGER_JSON: /openapi.json
+  #     API_URL: "http://84.201.143.226:8080/engine-rest"
+
