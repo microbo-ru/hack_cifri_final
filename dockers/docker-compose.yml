@@ -30,7 +30,7 @@ services:
       - server
     env_file: .env
     environment:
-      - SERVER_PORT=$SERVER_PORT
+      - VUE_APP_SERVER_PORT=$SERVER_PORT
     command: bash -c "npm install && npm run serve"
     volumes:
       - ./../front:/code
