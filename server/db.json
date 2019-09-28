@@ -44,6 +44,34 @@
           "placeholder": "sexs"
         }
       ]
+    },
+    {
+      "id": 123649,
+      "title": "Кадастр",
+      "description": "Кадастр",
+      "schema": [
+        {
+          "fieldType": "TextInput",
+          "label": "Введите ФИО",
+          "name": "citizenName",
+          "placeholder": "ФИО"
+        },
+        {
+          "name": "requestRegistredAt"
+        },
+        {
+          "fieldType": "TextInput",
+          "label": "Введите адрес",
+          "name": "address",
+          "placeholder": "адрес"
+        },
+        {
+          "fieldType": "TextInput",
+          "label": "Введите Паспорт",
+          "name": "passport",
+          "placeholder": "паспорт"
+        }
+      ]
     }
   ]
 }
