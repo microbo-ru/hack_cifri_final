@@ -1,18 +1,24 @@
 <template>
   <v-container>
-    <div>{{form_data}}</div>
+    <FormGenerator :schema="form_schema" v-model="form_data" />
     <v-btn @click="changeActiveForm">Change active from</v-btn>
   </v-container>
 </template>
 
 <script>
+import FormGenerator from "./FormGenerator";
 import { mapState } from "vuex";
 
 export default {
   name: "NewFormPreview",
+  data() {
+    return {
+      form_data: {}
+    };
+  },
   computed: {
-    form_data() {
-      return this.$store.getters.getActiveForm;
+    form_schema() {
+      return this.$store.getters.getActiveForm["schema"];
     }
   },
   methods: {
@@ -21,6 +27,14 @@ export default {
       form_number = form_number == 0 ? 1 : 0;
       this.$store.commit("changeActiveForm", { form_number });
     }
+  },
+  watch: {
+    form_data: function() {
+      console.log(this.form_data);
+    }
+  },
+  components: {
+    FormGenerator
   }
 };
 </script>
