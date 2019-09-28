@@ -16,3 +16,7 @@
 ```
 http://localhost:8080/camunda
 ```
+
+## To deploy 
+To deploy a process to the Camunda, use the following url as a deployment url for Modeller:
+> http://{host}:8080/engine-rest
