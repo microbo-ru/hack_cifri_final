@@ -44,6 +44,7 @@ services:
       - ./../server/db.json:/data/db.json
     ports:
       - 8083:80
+
   swagger-ui:
     image: swaggerapi/swagger-ui
     container_name: "swagger-ui"
@@ -53,15 +54,6 @@ services:
       - ./../doc/workflow.yml:/workflow.yml
     environment:
       SWAGGER_JSON: /workflow.yml
-
-      server:
-    image: clue/json-server
-    command: /data/db.json --watch
-    volumes:
-      - ./../server
-      - ./../server/db.json:/data/db.json
-    ports:
-      - 8083:80
 
   # swagger-editor:
   #   image: swaggerapi/swagger-editor
