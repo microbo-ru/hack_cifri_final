@@ -44,7 +44,7 @@ services:
     image: clue/json-server
     command: /data/db.json --watch
     volumes:
-      - ./../server:/data
+      # - ./../server:/data
       - rest_server:/data
     env_file: .env
     ports:
