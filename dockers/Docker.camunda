@@ -1,0 +1,3 @@
+FROM camunda/camunda-bpm-platform:tomcat-latest
+
+COPY ./web.xml /camunda/webapps/engine-rest/WEB-INF

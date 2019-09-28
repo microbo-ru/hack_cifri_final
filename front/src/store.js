@@ -64,14 +64,11 @@ export default new Vuex.Store({
 
       state.activeFormNumber = form_number;
       Vue.set(state, "activeForm", state.forms[state.activeFormNumber]);
-
-      console.log("changeActiveForm");
     },
     changeForm(state, payload) {
       let form = payload["form"];
       state.forms[state.activeFormNumber] = form;
       Vue.set(state, "activeForm", form);
-      console.log("changeForm");
     }
   },
   actions: {}

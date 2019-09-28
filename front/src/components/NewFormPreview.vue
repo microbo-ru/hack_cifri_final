@@ -7,7 +7,6 @@
 
 <script>
 import FormGenerator from "./FormGenerator";
-import { mapState } from "vuex";
 
 export default {
   name: "NewFormPreview",
@@ -29,9 +28,7 @@ export default {
     }
   },
   watch: {
-    form_data: function() {
-      console.log(this.form_data);
-    }
+    form_data: function() {}
   },
   components: {
     FormGenerator
