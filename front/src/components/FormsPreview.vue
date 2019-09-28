@@ -6,7 +6,7 @@
           <v-card-title>{{form.title}}</v-card-title>
           <v-card-text>{{form.description}}</v-card-text>
           <v-card-actions>
-            <v-btn @click="$emit('newActiveForm', index)">Заказать услугу</v-btn>
+            <v-btn @click="$emit('newActiveForm', index)">{{text}}</v-btn>
           </v-card-actions>
         </v-card>
       </v-col>
@@ -16,6 +16,7 @@
 
 <script>
 export default {
-  name: "FormsPreview"
+  name: "FormsPreview",
+  props: ["text"]
 };
 </script>

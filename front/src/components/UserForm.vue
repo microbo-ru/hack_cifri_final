@@ -8,7 +8,7 @@
     </v-row>
     <v-row>
       <v-container>
-        <FormsPreview @newActiveForm="selected_new_active_form" />
+        <FormsPreview @newActiveForm="selected_new_active_form" text="Заказать услугу" />
       </v-container>
     </v-row>
   </v-container>
