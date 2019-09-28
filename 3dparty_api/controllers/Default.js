@@ -6,7 +6,6 @@ var Default = require('../service/DefaultService');
 
 module.exports.getRequestById = function getRequestById (req, res, next) {
   var id = req.swagger.params['id'].value;
-  console.log(id)
   Default.getRequestById(id)
     .then(function (response) {
       utils.writeJson(res, response);
