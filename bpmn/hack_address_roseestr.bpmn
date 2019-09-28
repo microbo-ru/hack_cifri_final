@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" id="Definitions_0nrliiz" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="3.0.1">
+  <bpmn:process id="Process_1mj4diy" name="Услуга" isExecutable="true">
+    <bpmn:endEvent id="EndEvent_0z6hbq7">
+      <bpmn:incoming>SequenceFlow_1h52bpc</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:manualTask id="Task_1qj0cjh" name="Подтвердить разрешение - муниципальные земли">
+      <bpmn:incoming>SequenceFlow_0kwn8p2</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_00ha1er</bpmn:outgoing>
+    </bpmn:manualTask>
+    <bpmn:manualTask id="Task_154hji1" name="Подтвердить разрешенеи - республиканские земли">
+      <bpmn:incoming>SequenceFlow_1cnegct</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_1s676f7</bpmn:outgoing>
+    </bpmn:manualTask>
+    <bpmn:startEvent id="StartEvent1" name="Подача уведомления на строительство">
+      <bpmn:extensionElements>
+        <camunda:formData businessKey="requestId">
+          <camunda:formField id="requestId" label="Номер запроса" />
+          <camunda:formField id="citizenName" label="ФИО гражданина" type="string" />
+          <camunda:formField id="address" label="Адрес объекта недвижимости" type="string" />
+          <camunda:formField id="requestRegisteredAt" label="Дата регистрации запроса" type="date" />
+          <camunda:formField id="kadastrNumber" label="Кадастровый номер объекта" type="string" />
+          <camunda:formField id="passport" label="Паспортные данные" type="string" />
+        </camunda:formData>
+      </bpmn:extensionElements>
+      <bpmn:outgoing>SequenceFlow_09qogfp</bpmn:outgoing>
+      <bpmn:messageEventDefinition messageRef="Message_1rmmmef" />
+    </bpmn:startEvent>
+    <bpmn:sequenceFlow id="SequenceFlow_09qogfp" sourceRef="StartEvent1" targetRef="updateRequestData" />
+    <bpmn:exclusiveGateway id="kadastrSpecified" name="Введен ли кадастровый номер объекта">
+      <bpmn:incoming>SequenceFlow_0m48fii</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_0qwfr7c</bpmn:outgoing>
+      <bpmn:outgoing>SequenceFlow_03zjiwr</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:sequenceFlow id="SequenceFlow_0qwfr7c" name="Да" sourceRef="kadastrSpecified" targetRef="verifyAddressStatus">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${kadastrSpecfied}</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:scriptTask id="updateRequestData" name="Проверка данных заявки">
+      <bpmn:incoming>SequenceFlow_09qogfp</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_0m48fii</bpmn:outgoing>
+      <bpmn:script>kadastrSpecfied = (kadastrNumber === "")
+requestRegisteredAt = now()
+</bpmn:script>
+    </bpmn:scriptTask>
+    <bpmn:sequenceFlow id="SequenceFlow_0m48fii" sourceRef="updateRequestData" targetRef="kadastrSpecified" />
+    <bpmn:task id="callRoseestr" name="Запросить данные в Росеестре">
+      <bpmn:incoming>SequenceFlow_03zjiwr</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_1ue8bkq</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:sequenceFlow id="SequenceFlow_03zjiwr" name="Нет" sourceRef="kadastrSpecified" targetRef="callRoseestr">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${!kadastrSpecfied}</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="SequenceFlow_1ue8bkq" sourceRef="callRoseestr" targetRef="verifyAddressStatus" />
+    <bpmn:exclusiveGateway id="ExclusiveGateway_0pdcuhf" name="Характер земель">
+      <bpmn:incoming>SequenceFlow_0dv80kw</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_0kwn8p2</bpmn:outgoing>
+      <bpmn:outgoing>SequenceFlow_1cnegct</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:task id="prepareResults" name="Сформировать разрешительные документы">
+      <bpmn:incoming>SequenceFlow_00ha1er</bpmn:incoming>
+      <bpmn:incoming>SequenceFlow_1s676f7</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_0xme16j</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:sequenceFlow id="SequenceFlow_0kwn8p2" name="Муниципального подчинения" sourceRef="ExclusiveGateway_0pdcuhf" targetRef="Task_1qj0cjh">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${isMunicipal}</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:scriptTask id="verifyAddressStatus" name="Проверить статус земель">
+      <bpmn:incoming>SequenceFlow_0qwfr7c</bpmn:incoming>
+      <bpmn:incoming>SequenceFlow_1ue8bkq</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_0dv80kw</bpmn:outgoing>
+      <bpmn:script>isMunicipal = (address.length &lt; 15);</bpmn:script>
+    </bpmn:scriptTask>
+    <bpmn:sequenceFlow id="SequenceFlow_0dv80kw" sourceRef="verifyAddressStatus" targetRef="ExclusiveGateway_0pdcuhf" />
+    <bpmn:sequenceFlow id="SequenceFlow_1cnegct" name="Региональные" sourceRef="ExclusiveGateway_0pdcuhf" targetRef="Task_154hji1">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${isMunicipal == false}</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="SequenceFlow_00ha1er" sourceRef="Task_1qj0cjh" targetRef="prepareResults" />
+    <bpmn:sequenceFlow id="SequenceFlow_1s676f7" sourceRef="Task_154hji1" targetRef="prepareResults" />
+    <bpmn:task id="notifyCitizen" name="Оповестить гражданина">
+      <bpmn:incoming>SequenceFlow_0xme16j</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_1h52bpc</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:sequenceFlow id="SequenceFlow_0xme16j" sourceRef="prepareResults" targetRef="notifyCitizen" />
+    <bpmn:sequenceFlow id="SequenceFlow_1h52bpc" sourceRef="notifyCitizen" targetRef="EndEvent_0z6hbq7" />
+  </bpmn:process>
+  <bpmn:message id="Message_1rmmmef" name="NewServiceRequest" />
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Process_1mj4diy">
+      <bpmndi:BPMNShape id="EndEvent_0z6hbq7_di" bpmnElement="EndEvent_0z6hbq7">
+        <dc:Bounds x="1512" y="220" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ManualTask_1r5nbj1_di" bpmnElement="Task_1qj0cjh">
+        <dc:Bounds x="965" y="81" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ManualTask_1jjgtvt_di" bpmnElement="Task_154hji1">
+        <dc:Bounds x="965" y="308" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="StartEvent_110k303_di" bpmnElement="StartEvent1">
+        <dc:Bounds x="161" y="220" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="138" y="263" width="83" height="40" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_09qogfp_di" bpmnElement="SequenceFlow_09qogfp">
+        <di:waypoint x="197" y="238" />
+        <di:waypoint x="257" y="238" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="ExclusiveGateway_17ftp20_di" bpmnElement="kadastrSpecified" isMarkerVisible="true">
+        <dc:Bounds x="416" y="213" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="402" y="163" width="77" height="40" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_0qwfr7c_di" bpmnElement="SequenceFlow_0qwfr7c">
+        <di:waypoint x="466" y="238" />
+        <di:waypoint x="668" y="238" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="555" y="216" width="14" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="ScriptTask_1u1aerq_di" bpmnElement="updateRequestData">
+        <dc:Bounds x="257" y="198" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_0m48fii_di" bpmnElement="SequenceFlow_0m48fii">
+        <di:waypoint x="357" y="238" />
+        <di:waypoint x="416" y="238" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="Task_1efre5v_di" bpmnElement="callRoseestr">
+        <dc:Bounds x="530" y="308" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_03zjiwr_di" bpmnElement="SequenceFlow_03zjiwr">
+        <di:waypoint x="441" y="263" />
+        <di:waypoint x="441" y="348" />
+        <di:waypoint x="530" y="348" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="446" y="301" width="20" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SequenceFlow_1ue8bkq_di" bpmnElement="SequenceFlow_1ue8bkq">
+        <di:waypoint x="630" y="348" />
+        <di:waypoint x="718" y="348" />
+        <di:waypoint x="718" y="278" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="ExclusiveGateway_0pdcuhf_di" bpmnElement="ExclusiveGateway_0pdcuhf" isMarkerVisible="true">
+        <dc:Bounds x="850" y="213" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="910" y="231" width="88" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_1susugl_di" bpmnElement="prepareResults">
+        <dc:Bounds x="1187" y="198" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_0kwn8p2_di" bpmnElement="SequenceFlow_0kwn8p2">
+        <di:waypoint x="875" y="213" />
+        <di:waypoint x="875" y="121" />
+        <di:waypoint x="965" y="121" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="885" y="172" width="87" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="ScriptTask_08zqo5i_di" bpmnElement="verifyAddressStatus">
+        <dc:Bounds x="668" y="198" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_0dv80kw_di" bpmnElement="SequenceFlow_0dv80kw">
+        <di:waypoint x="768" y="238" />
+        <di:waypoint x="850" y="238" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SequenceFlow_1cnegct_di" bpmnElement="SequenceFlow_1cnegct">
+        <di:waypoint x="875" y="263" />
+        <di:waypoint x="875" y="348" />
+        <di:waypoint x="965" y="348" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="882" y="300" width="74" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SequenceFlow_00ha1er_di" bpmnElement="SequenceFlow_00ha1er">
+        <di:waypoint x="1065" y="121" />
+        <di:waypoint x="1146" y="121" />
+        <di:waypoint x="1146" y="238" />
+        <di:waypoint x="1187" y="238" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SequenceFlow_1s676f7_di" bpmnElement="SequenceFlow_1s676f7">
+        <di:waypoint x="1065" y="348" />
+        <di:waypoint x="1146" y="348" />
+        <di:waypoint x="1146" y="238" />
+        <di:waypoint x="1187" y="238" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="Task_0ba05xg_di" bpmnElement="notifyCitizen">
+        <dc:Bounds x="1349" y="198" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_0xme16j_di" bpmnElement="SequenceFlow_0xme16j">
+        <di:waypoint x="1287" y="238" />
+        <di:waypoint x="1349" y="238" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SequenceFlow_1h52bpc_di" bpmnElement="SequenceFlow_1h52bpc">
+        <di:waypoint x="1449" y="238" />
+        <di:waypoint x="1512" y="238" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>
