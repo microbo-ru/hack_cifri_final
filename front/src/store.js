@@ -4,7 +4,7 @@ import axios from "axios";
 Vue.use(Vuex);
 const server_port = process.env.SERVER_PORT || 5000;
 const server_url = process.env.SERVER_URL || "http://localhost";
-const url = `${server_url}:${server_port}/form_list`;
+const url = `${server_url}:${server_port}/forms`;
 
 export default new Vuex.Store({
   state: {

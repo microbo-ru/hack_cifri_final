@@ -1,5 +1,6 @@
 version: "2"
 services:
+
   camunda:
     image: camunda/camunda-bpm-platform:latest
     ports:
@@ -25,6 +26,10 @@ services:
 
   front:
     image: ebiven/vue-cli
+    depends_on:
+      - server
+    environment: 
+      - SERVER_PORT=8083
     command: npm run serve
     volumes:
       - ./../front
