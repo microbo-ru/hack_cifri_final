@@ -1,7 +1,7 @@
 <template>
   <v-container>
     <FormGenerator :schema="form_schema" v-model="form_data" />
-    <v-btn @click="changeActiveForm">Change active from</v-btn>
+
     <v-btn @click="$store.dispatch('commitForms')">Save form</v-btn>
   </v-container>
 </template>
@@ -21,13 +21,7 @@ export default {
       return this.$store.getters.getActiveForm["schema"];
     }
   },
-  methods: {
-    changeActiveForm() {
-      let form_number = this.$store.state.activeFormNumber;
-      form_number = form_number == 0 ? 1 : 0;
-      this.$store.commit("changeActiveForm", { form_number });
-    }
-  },
+  methods: {},
   watch: {
     form_data: function() {}
   },

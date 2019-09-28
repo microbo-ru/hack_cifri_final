@@ -35,15 +35,26 @@ export default new Vuex.Store({
       state.fetched = true;
       state.activeFormNumber = 0;
       state.activeForm = state.forms[state.activeFormNumber];
+    },
+    appendNewForm(state) {
+      state.forms.push({
+        id: (Math.random() * 1000000) | 0,
+        schema: []
+      });
+      state.activeFormNumber = state.forms.length - 1;
+      state.activeForm = state.forms[state.activeFormNumber];
     }
   },
   actions: {
     async fetchForms() {
       let res = await axios.get(`${url}`);
+      console.log(res);
       this.commit("fetchedForms", { res });
     },
-    commitForms() {
-      axios.post(`${url}`, { forms: this.state.forms });
+    commitForms(store) {
+      let id = store.state.activeForm["id"];
+      console.log(store.state.activeForm);
+      axios.put(`${url}/${id}`, store.state.activeForm);
     }
   }
 });

@@ -37,6 +37,8 @@ export default {
     this.$store.subscribe(mutation => {
       if (mutation.type === "changeActiveForm") {
         this.form_data = this.$store.getters.getActiveForm;
+      } else if (mutation.type === "appendNewForm") {
+        this.form_data = this.$store.getters.getActiveForm;
       }
     });
   }

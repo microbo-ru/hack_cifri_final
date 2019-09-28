@@ -1,1 +1,37 @@
-{"forms":[{"id":1,"title":"Name and passport form test","schema":[{"fieldType":"TextInput","placeholder":"name","label":"Name","name":"name"},{"fieldType":"NumberInput","placeholder":"Passport","name":"passport","label":"passport data","minValue":1000000000}]},{"id":2,"title":"Name form","schema":[{"fieldType":"TextInput","placeholder":"address","label":"address","name":"address"}]}]}
+{
+  "forms": [
+    {
+      "id": 1,
+      "title": "Name and passport form test",
+      "description": "Форма для получения паспорта",
+      "schema": [
+        {
+          "fieldType": "TextInput",
+          "placeholder": "name",
+          "label": "Name",
+          "name": "name"
+        },
+        {
+          "fieldType": "NumberInput",
+          "placeholder": "Passport",
+          "name": "passport",
+          "label": "passport data",
+          "minValue": 1000000000
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "title": "Name form",
+      "description": "Форма для получения имени",
+      "schema": [
+        {
+          "fieldType": "TextInput",
+          "placeholder": "address",
+          "label": "address",
+          "name": "address"
+        }
+      ]
+    }
+  ]
+}
