@@ -25,15 +25,15 @@ services:
       - POSTGRES_PASSWORD=camunda
 
   front:
-    image: otzhora/vue:vue
+    image: ebiven/vue-cli
     depends_on:
       - server
     env_file: .env
-    environment: 
+    environment:
       - SERVER_PORT=$SERVER_PORT
-    command: npm run serve
+    command: bash -c "npm install && npm run serve"
     volumes:
-      - ./../front:/app
+      - ./../front:/code
     ports:
       - $FRONT_PORT:8080
 
