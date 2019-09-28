@@ -2,6 +2,7 @@
   <v-container>
     <FormGenerator :schema="form_schema" v-model="form_data" />
     <v-btn @click="changeActiveForm">Change active from</v-btn>
+    <v-btn @click="$store.dispatch('commitForms')">Save form</v-btn>
   </v-container>
 </template>
 

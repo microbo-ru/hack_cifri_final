@@ -1,57 +1,15 @@
 import Vue from "vue";
 import Vuex from "vuex";
-
+import axios from "axios";
 Vue.use(Vuex);
+const url = "http://localhost:5000/form_list";
 
 export default new Vuex.Store({
   state: {
-    forms: [
-      {
-        schema: [
-          {
-            fieldType: "TextInput",
-            placeholder: "name",
-            label: "Name",
-            name: "name"
-          },
-          {
-            fieldType: "NumberInput",
-            placeholder: "Passport",
-            name: "passport",
-            label: "passport data",
-            minValue: 1000000000
-          }
-        ]
-      },
-      {
-        schema: [
-          {
-            fieldType: "TextInput",
-            placeholder: "address",
-            label: "address",
-            name: "address"
-          }
-        ]
-      }
-    ],
-    activeForm: {
-      schema: [
-        {
-          fieldType: "TextInput",
-          placeholder: "name",
-          label: "Name",
-          name: "name"
-        },
-        {
-          fieldType: "NumberInput",
-          placeholder: "Passport",
-          name: "passport",
-          label: "passport data",
-          minValue: 1000000000
-        }
-      ]
-    },
-    activeFormNumber: 0
+    forms: [],
+    activeForm: {},
+    activeFormNumber: 0,
+    fetched: false
   },
   getters: {
     getActiveForm(state) {
@@ -69,7 +27,21 @@ export default new Vuex.Store({
       let form = payload["form"];
       state.forms[state.activeFormNumber] = form;
       Vue.set(state, "activeForm", form);
+    },
+    fetchedForms(state, payload) {
+      state.forms = Array.from(payload["res"]["data"]["forms"]);
+      state.fetched = true;
+      state.activeFormNumber = 0;
+      state.activeForm = state.forms[state.activeFormNumber];
     }
   },
-  actions: {}
+  actions: {
+    async fetchForms() {
+      let res = await axios.get(`${url}`);
+      this.commit("fetchedForms", { res });
+    },
+    commitForms() {
+      axios.post(`${url}`, { forms: this.state.forms });
+    }
+  }
 });
