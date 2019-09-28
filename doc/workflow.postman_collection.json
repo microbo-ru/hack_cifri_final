@@ -459,13 +459,13 @@
 							}
 						],
 						"url": {
-							"raw": "{{camunda}}/process-definition/invoice:2:8efcaf86-e1b7-11e9-bb2f-0242ac120003/xml",
+							"raw": "{{camunda}}/process-definition/invoice:2:76f3f756-e228-11e9-9a9f-0242ac150006/xml",
 							"host": [
 								"{{camunda}}"
 							],
 							"path": [
 								"process-definition",
-								"invoice:2:8efcaf86-e1b7-11e9-bb2f-0242ac120003",
+								"invoice:2:76f3f756-e228-11e9-9a9f-0242ac150006",
 								"xml"
 							]
 						}
@@ -483,13 +483,13 @@
 							}
 						],
 						"url": {
-							"raw": "{{camunda}}/process-definition/PayTaxes:5:05201180-99b4-11e7-92b2-0242ac110002/statistics",
+							"raw": "{{camunda}}/process-definition/{{process_id}}/statistics",
 							"host": [
 								"{{camunda}}"
 							],
 							"path": [
 								"process-definition",
-								"PayTaxes:5:05201180-99b4-11e7-92b2-0242ac110002",
+								"{{process_id}}",
 								"statistics"
 							]
 						}
@@ -523,7 +523,8 @@
 						"header": [
 							{
 								"key": "Accept",
-								"value": ""
+								"value": "",
+								"disabled": true
 							},
 							{
 								"key": "Content-Type",
@@ -532,18 +533,17 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n\t\"variables\": {\r\n\t\t\"invoiceNumber\" : {\"value\" : \"invoice 1\", \"type\": \"string\"},\r\n    \t\"amount\" : {\"value\" : 30, \"type\": \"integer\"},\r\n    \t\"creditor\" : {\"value\" : \"Creditor 1\", \"type\": \"string\"},\r\n    \t\"invoiceCategory\" : {\"value\" : \"Category 1\", \"type\": \"string\"},\r\n    \t\"approverGroups\" : {\"value\" : true, \"type\": \"boolean\"}\r\n    }\r\n}\r\n"
+							"raw": "{\n  \"variables\": {\n    \"creditor\": {\"value\":\"Niall\",\"type\":\"String\"},\n    \"amount\":{\"value\":\"100\",\"type\":\"String\"},\n    \"invoiceNumber\":{\"value\":\"123\",\"type\":\"String\"},\n    \"invoiceCategory\":{\"value\":\"Travel Expenses\",\"type\":\"String\"}\n  }\n}"
 						},
 						"url": {
-							"raw": "{{camunda}}/process-definition/key/PayTaxes/start",
+							"raw": "{{camunda}}/process-definition/{{process_id}}/submit-form",
 							"host": [
 								"{{camunda}}"
 							],
 							"path": [
 								"process-definition",
-								"key",
-								"PayTaxes",
-								"start"
+								"{{process_id}}",
+								"submit-form"
 							]
 						}
 					},
