@@ -18,16 +18,16 @@ export default {
   },
   methods: {
     async fetchXML() {
-      let processDefenition = "invoice:2:8efcaf86-e1b7-11e9-bb2f-0242ac120003";
+      let processDefenition = "invoice:1:7735df55-e224-11e9-9321-0242ac170006";
       let options = {
-        mode: "no-cors",
         headers: {
           "Content-Type": "application/json"
         },
         method: "GET"
       };
+      let url = "http://127.0.0.1:8080";
       let res = await axios.get(
-        `/engine-rest/process-definition/${processDefenition}/xml`,
+        `${url}/engine-rest/process-definition/${processDefenition}/xml`,
         options
       );
 

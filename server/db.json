@@ -2,34 +2,46 @@
   "forms": [
     {
       "id": 1,
-      "title": "Name and passport form test",
+      "title": "Паспорт",
       "description": "Форма для получения паспорта",
       "schema": [
         {
           "fieldType": "TextInput",
-          "placeholder": "name",
-          "label": "Name",
+          "placeholder": "Фио",
+          "label": "Введите фио",
           "name": "name"
         },
         {
           "fieldType": "NumberInput",
-          "placeholder": "Passport",
+          "placeholder": "Паспорт",
           "name": "passport",
-          "label": "passport data",
+          "label": "Введите паспортные данные",
           "minValue": 1000000000
         }
       ]
     },
     {
       "id": 2,
-      "title": "Name form",
+      "title": "Имя",
       "description": "Форма для получения имени",
       "schema": [
         {
           "fieldType": "TextInput",
-          "placeholder": "address",
-          "label": "address",
-          "name": "address"
+          "placeholder": "имя",
+          "label": "Введите имя",
+          "name": "dream_name"
+        }
+      ]
+    },
+    {
+      "title": "Пол",
+      "id": 995658,
+      "schema": [
+        {
+          "fieldType": "TextInput",
+          "label": "Какой пол желаете?",
+          "name": "sex",
+          "placeholder": "sexs"
         }
       ]
     }

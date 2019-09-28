@@ -43,6 +43,7 @@ export default new Vuex.Store({
       });
       state.activeFormNumber = state.forms.length - 1;
       state.activeForm = state.forms[state.activeFormNumber];
+      axios.post(`${url}`, state.activeForm);
     }
   },
   actions: {
@@ -51,7 +52,7 @@ export default new Vuex.Store({
       console.log(res);
       this.commit("fetchedForms", { res });
     },
-    commitForms(store) {
+    commitForms(store, new_form) {
       let id = store.state.activeForm["id"];
       console.log(store.state.activeForm);
       axios.put(`${url}/${id}`, store.state.activeForm);
