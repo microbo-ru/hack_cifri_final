@@ -24,29 +24,12 @@ services:
       - POSTGRES_PASSWORD=camunda
 
   front:
-    image: ebiven/vue-cli
+    image: otzhora/vue
     command: npm run serve
     volumes:
-      - ./../front
+      - ./../front:/app
     ports:
       - 8081:8080
-
-  server:
-    image: clue/json-server
-    command: /data/db.json --watch
-    volumes:
-      - ./../server
-      - ./../server/db.json:/data/db.json
-    ports:
-      - 8083:80
-
-  # swagger-editor:
-  #   image: swaggerapi/swagger-editor
-  #   container_name: "swagger-editor"
-  #   ports:
-  #     - "8081:8080"
-  #   environment:
-  #     SWAGGER_JSON: /workflow.json
 
   swagger-ui:
     image: swaggerapi/swagger-ui
@@ -57,4 +40,3 @@ services:
       - ./../doc/workflow.yml:/workflow.yml
     environment:
       SWAGGER_JSON: /workflow.yml
-
