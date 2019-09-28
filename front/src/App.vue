@@ -29,7 +29,7 @@
 
     <v-content>
       <v-container v-if="activeElement == 'NewForm'">
-        <NewForm />
+        <NewForm v-if="fetched" />
       </v-container>
       <v-container v-if="activeElement == 'Home'">
         <Home
@@ -61,6 +61,14 @@ export default {
   components: {
     NewForm,
     Home
+  },
+  computed: {
+    fetched() {
+      return this.$store.state.fetched;
+    }
+  },
+  created() {
+    this.$store.dispatch("fetchForms");
   }
 };
 </script>
