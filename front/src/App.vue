@@ -42,7 +42,7 @@
         <!-- USER FORM -->
       </v-container>
       <v-container v-if="activeElement == 'Routes'">
-        <!-- ROUTE MANAGER -->
+        <WorkProcess />
       </v-container>
     </v-content>
   </v-app>
@@ -51,6 +51,7 @@
 <script>
 import NewForm from "./components/NewForm";
 import Home from "./components/Home";
+import WorkProcess from "./components/WorkProcess";
 export default {
   name: "App",
   data() {
@@ -60,7 +61,8 @@ export default {
   },
   components: {
     NewForm,
-    Home
+    Home,
+    WorkProcess
   },
   computed: {
     fetched() {
