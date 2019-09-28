@@ -1,0 +1,102 @@
+openapi: 3.0.1
+info:
+  title: Tat-Uslugi Workflow API
+  description: Предоставляет доступ к госслугам Республики Татарстан
+  version: 1.0.0
+servers:
+- url: http://localhost:8090
+paths:
+  /services:
+    get:
+      summary: Возвращает список всех поддерживаемых сервисов
+      operationId: getServices
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Service'
+                x-content-type: application/json
+        405:
+          description: Invalid input
+          content: {}
+      x-swagger-router-controller: Default
+  /requests:
+    post:
+      summary: Запустить новую услугу на выполнение
+      operationId: newRequest
+      requestBody:
+        description: Initiates new request
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Request'
+        required: true
+      responses:
+        405:
+          description: Invalid input
+          content: {}
+      x-swagger-router-controller: Default
+  /requests/{id}:
+    get:
+      operationId: getRequestById
+      parameters:
+      - name: id
+        in: path
+        description: ID of the request to get the sattus
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Request'
+        404:
+          description: Request not found
+          content: {}
+      x-swagger-router-controller: Default
+components:
+  schemas:
+    Service:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        expectedDuration:
+          type: integer
+      example:
+        name: name
+        id: id
+        expectedDuration: 0
+    Request:
+      type: object
+      properties:
+        id:
+          type: string
+        dateSubmitted:
+          type: string
+        serviceIdRequested:
+          type: string
+        status:
+          type: string
+        xmlState:
+          type: string
+        formData:
+          type: object
+      example:
+        serviceIdRequested: serviceIdRequested
+        formData: {}
+        id: id
+        xmlState: xmlState
+        dateSubmitted: dateSubmitted
+        status: status
