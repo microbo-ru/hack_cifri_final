@@ -4,21 +4,22 @@ services:
   camunda:
     image: camunda/camunda-bpm-platform:latest
     ports:
-      - 8080:8080
+      - $CAMUNDA_PORT:8080
     depends_on:
       - db
+    env_file: .env
     environment:
       - DB_DRIVER=org.postgresql.Driver
       - DB_URL=jdbc:postgresql://db:5432/camunda
       - DB_USERNAME=camunda
       - DB_PASSWORD=camunda
-      - WAIT_FOR=db:5432
+      - WAIT_FOR=db:$POSTGRES_PORT
 
   db:
     image: postgres
     restart: on-failure
     ports:
-      - 5432:5432
+      - $POSTGRES_PORT:5432
     environment:
       - POSTGRES_DB=camunda
       - POSTGRES_USER=camunda
@@ -28,13 +29,14 @@ services:
     image: otzhora/vue
     depends_on:
       - server
+    env_file: .env
     environment: 
-      - SERVER_PORT=8083
+      - SERVER_PORT=$SERVER_PORT
     command: npm run serve
     volumes:
       - ./../front:/app
     ports:
-      - 8081:8080
+      - $FRONT_PORT:8080
 
   server:
     image: clue/json-server
@@ -42,18 +44,21 @@ services:
     volumes:
       - ./../server
       - ./../server/db.json:/data/db.json
+    env_file: .env
     ports:
-      - 8083:80
+      - $SERVER_PORT:80
 
   swagger-ui:
     image: swaggerapi/swagger-ui
     container_name: "swagger-ui"
-    ports:
-      - 8082:8080
-    volumes:
-      - ./../doc/workflow.yml:/workflow.yml
+    env_file: .env
     environment:
       SWAGGER_JSON: /workflow.yml
+    ports:
+      - $SWAGGER_UI_PORT:8080
+    volumes:
+      - ./../doc/workflow.yml:/workflow.yml
+    
 
   # swagger-editor:
   #   image: swaggerapi/swagger-editor
