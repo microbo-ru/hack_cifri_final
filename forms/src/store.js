@@ -7,30 +7,49 @@ export default new Vuex.Store({
   state: {
     forms: [
       {
-        name_field: {
-          title: "enter your name",
-          component_type: "NameInput"
-        },
-        passport_field: {
-          title: "enter your pass",
-          component_type: "PassportInput"
-        }
+        schema: [
+          {
+            fieldType: "TextInput",
+            placeholder: "name",
+            label: "Name",
+            name: "name"
+          },
+          {
+            fieldType: "NumberInput",
+            placeholder: "Passport",
+            name: "passport",
+            label: "passport data",
+            minValue: 1000000000
+          }
+        ]
       },
       {
-        sas_field: {
-          title: "kek"
-        }
+        schema: [
+          {
+            fieldType: "TextInput",
+            placeholder: "address",
+            label: "address",
+            name: "address"
+          }
+        ]
       }
     ],
     activeForm: {
-      name_field: {
-        title: "enter your name",
-        component_type: "NameInput"
-      },
-      passport_field: {
-        title: "enter your pass",
-        component_type: "PassportInput"
-      }
+      schema: [
+        {
+          fieldType: "TextInput",
+          placeholder: "name",
+          label: "Name",
+          name: "name"
+        },
+        {
+          fieldType: "NumberInput",
+          placeholder: "Passport",
+          name: "passport",
+          label: "passport data",
+          minValue: 1000000000
+        }
+      ]
     },
     activeFormNumber: 0
   },

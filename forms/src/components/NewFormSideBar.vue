@@ -1,8 +1,11 @@
 <template>
   <v-container>
-    <div>
+    <v-row>
       <v-jsoneditor v-model="form_data" :options="opt" />
-    </div>
+    </v-row>
+    <v-row>
+      <v-btn @click="apply">Apply changes</v-btn>
+    </v-row>
   </v-container>
 </template>
 
@@ -21,7 +24,10 @@ export default {
     };
   },
   watch: {
-    form_data: function() {
+    form_data: function() {}
+  },
+  methods: {
+    apply() {
       this.$store.commit("changeForm", { form: this.form_data });
     }
   },
