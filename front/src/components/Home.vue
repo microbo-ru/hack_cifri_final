@@ -4,7 +4,7 @@
       <v-col>
         <v-card class="mx-auto" width="344">
           <v-card-text>
-            <p class="display-1 text--primary">Страница аналитика</p>
+            <p class="display-1 text--primary">Создание/редактирование форм</p>
 
             <div class="text--primary">Нужна для создания форм аналитиком</div>
           </v-card-text>
@@ -16,7 +16,7 @@
       <v-col>
         <v-card class="mx-auto" width="344">
           <v-card-text>
-            <p class="display-1 text--primary">Страница Путенера</p>
+            <p class="display-1 text--primary">Рабочие процессы</p>
 
             <div class="text--primary">Нажна для создания логики обработки формы</div>
           </v-card-text>

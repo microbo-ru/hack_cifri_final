@@ -3,8 +3,18 @@
     <v-app-bar app>
       <v-btn text large @click="activeElement = 'Home'">GOSTATAR</v-btn>
 
-      <v-btn text small v-if="activeElement != 'Home'" @click="activeElement = 'NewForm'">Аналитик</v-btn>
-      <v-btn text small v-if="activeElement != 'Home'" @click="activeElement = 'Routes'">Путенер</v-btn>
+      <v-btn
+        text
+        small
+        v-if="activeElement != 'Home'"
+        @click="activeElement = 'NewForm'"
+      >Создание форм</v-btn>
+      <v-btn
+        text
+        small
+        v-if="activeElement != 'Home'"
+        @click="activeElement = 'Routes'"
+      >Настройка рабочих процессов</v-btn>
       <v-btn
         text
         small
