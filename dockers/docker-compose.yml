@@ -29,7 +29,7 @@ services:
     volumes:
       - ./../front
     ports:
-      - 8088:8080
+      - 8081:8080
 
   server:
     image: clue/json-server
@@ -38,7 +38,7 @@ services:
       - ./../server
       - ./../server/db.json:/data/db.json
     ports:
-      - 8085:80
+      - 8083:80
 
   # swagger-editor:
   #   image: swaggerapi/swagger-editor
@@ -54,7 +54,7 @@ services:
     ports:
       - 8082:8080
     volumes:
-      - ./../api/workflow.json:/workflow.json
+      - ./../doc/workflow.yml:/workflow.yml
     environment:
-      SWAGGER_JSON: /workflow.json
+      SWAGGER_JSON: /workflow.yml
 
