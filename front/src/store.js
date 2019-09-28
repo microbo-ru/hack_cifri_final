@@ -3,7 +3,8 @@ import Vuex from "vuex";
 import axios from "axios";
 Vue.use(Vuex);
 const server_port = process.env.VUE_APP_SERVER_PORT || 5000;
-const server_url = process.env.SERVER_URL || "http://localhost";
+const server_url = process.env.VUE_APP_SERVER_URL || "http://localhost";
+console.log(process.env);
 const url = `${server_url}:${server_port}/forms`;
 
 export default new Vuex.Store({
@@ -31,7 +32,7 @@ export default new Vuex.Store({
       Vue.set(state, "activeForm", form);
     },
     fetchedForms(state, payload) {
-      state.forms = Array.from(payload["res"]["data"]["forms"]);
+      state.forms = Array.from(payload["res"]["data"]);
       state.fetched = true;
       state.activeFormNumber = 0;
       state.activeForm = state.forms[state.activeFormNumber];
