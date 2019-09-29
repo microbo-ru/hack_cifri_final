@@ -2,7 +2,7 @@
   <v-container>
     <v-row>
       <v-col cols="12" md="6" v-for="(form, index) in $store.state.forms" :key="index">
-        <v-card height="150px" dark>
+        <v-card height="150px">
           <v-card-title>{{form.title}}</v-card-title>
           <v-card-text>{{form.description}}</v-card-text>
           <v-card-actions>

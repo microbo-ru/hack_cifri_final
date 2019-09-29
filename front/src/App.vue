@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <v-app-bar app dark>
+    <v-app-bar app>
       <v-btn text large @click="activeElement = 'Home'">GOSTATAR</v-btn>
 
       <v-btn
@@ -72,7 +72,8 @@ export default {
     }
   },
   created() {
-    this.$vuetify.theme.dark = true;
+    this.$vuetify.theme.dark = false;
+    this.$vuetify.theme.background = "grey";
     this.$store.dispatch("fetchForms");
   }
 };
