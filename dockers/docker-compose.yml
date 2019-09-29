@@ -47,7 +47,6 @@ services:
     command: /data/db.json --watch
     volumes:
       - ./../server:/data
-      - rest_server:/data
     env_file: .env
     ports:
       - $SERVER_PORT:80
@@ -71,5 +70,4 @@ services:
       - $SERVICES_FACADE_PORT:8084
 
 volumes:
-  rest_server:
   postgresql:

@@ -53,19 +53,17 @@ export default {
       let url = "http://84.201.143.226:8080/engine-rest/process-definition";
       let res = await axios.get(`${url}`);
       let processDefinition = res.data[2].id;
+      //todo: demo hack
+      req["kadastrNumber"] = {"type": "String", "value": ""};
       let opt = {
         headers: {
           "Content-type": "application/json"
         }
       };
-      console.log(
-        JSON.stringify({
-          variables: req
-        })
-      );
       axios
         .post(`${url}/${processDefinition}/start`, opt, {
-          variables: req
+          variables: req,
+          businessKey: "5976"//todo: demo hack
         })
         .then(res => console.log(res))
         .catch(console.log);
