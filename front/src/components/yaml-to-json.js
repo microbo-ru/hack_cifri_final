@@ -2,12 +2,18 @@ import YAML from "yaml";
 
 const word_map = {
   паспортные_данные: "passport",
-  фио: "name"
+  фио: "name",
+  телефон: "phone",
+  адрес: "adress",
+  имя_гражданина: "citizenName"
 };
 
 const reverse_word_map = {
   passport: "паспортные_данные",
-  name: "фио"
+  name: "фио",
+  phone: "телефон",
+  adress: "адрес",
+  citizenName: "имя_гражданина"
 };
 
 const type_map = {
@@ -22,9 +28,17 @@ const reverse_type_map = {
 
 const special_map = {
   name: { label: "введите фио", placeholder: "фио" },
+  citizenName: { label: "введите фио", placeholder: "фио" },
   passport: {
     label: "введите паспортные данные",
     placeholder: "паспорт"
+  },
+  phone: {
+    label: "введите свой номер телефона",
+    minValue: 1000000
+  },
+  adress: {
+    label: "введиете свой домашний адрес"
   }
 };
 
@@ -47,9 +61,9 @@ export default {
     return json;
   },
   json_to_yaml: json => {
+    console.log(json);
     let yaml_json = {};
     for (let item of json["schema"]) {
-      console.log(item);
       if (item["name"] in reverse_word_map) {
         yaml_json[reverse_word_map[item["name"]]] =
           reverse_type_map[item["fieldType"]];
