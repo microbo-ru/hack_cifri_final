@@ -1,36 +1,38 @@
-# Прототип системы оказания гос. услуг
+# Прототип платформы оказания гос. услуг в республике Татарстан
 
-Разработать прототип платформы, которая позволит переводить в электронный вид существующие государственные услуги силами аналитиков, без привлечения разработчиков
+*Задача:* Разработать прототип платформы, которая позволит переводить в электронный вид существующие государственные услуги силами аналитиков, без привлечения разработчиков.
 
-## Getting Started
-
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+Платформа реализована, как конгломерат сервисов, объединенных единой шиной управления бизнес процессами. Компоненты системы:
+ - Платформа управления бизнес-процессами
+ - База данных состояний процессов
+ - Веб-портал
+ - Хранилище мета- и справочной информации
+ - API для интеграции с внешними системами
 
 ![](doc/infra.png?raw=true)
 
-### Prerequisites
+### ТРЕБУЕМЫЕ КОМПОНЕНТЫ
 
-What things you need to install the software and how to install them
+Все компоненты системы реализованы, как независимые контейнеры, что делает возможным запуск приложения и его масштабирование к гетерогенной среде. 
 
+Проверьте наличие docker-compose 
 ```
-docker-compose --version
-docker-compose version 1.24.1, build 4667896b
-```
-
-### Installing
-
-A step by step series of examples that tell you how to get a development env running
-
-Say what the step will be
-
-```
-cd dockers
-docker-compose up -d
+> docker-compose --version
+> docker-compose version 1.24.1, build 4667896b
 ```
 
-End with an example of getting some data out of the system or using it for a little demo
+### ЗАПУСК СЕРВИСОВ
 
-## Общее описание
+Запуск сервисов производится через docker-compose, для этого необходимо выполнить компнады:
+
+```
+> cd dockers
+> docker-compose up -d
+```
+
+### ОБЩАЯ АРХИТЕКТУРА
+
+![](doc/Architecture.png?raw=true)
 
 ### Список услуг
 ![](doc/camunda.png?raw=true)
