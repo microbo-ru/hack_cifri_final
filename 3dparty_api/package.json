@@ -1,7 +1,7 @@
 {
-  "name": "tat-uslugi-workflow-api",
+  "name": "",
   "version": "1.0.0",
-  "description": "Предоставляет доступ к госслугам Республики Татарстан",
+  "description": "Предоставляет доступ к гос услугам Республики Татарстан",
   "main": "index.js",
   "scripts": {
     "prestart": "npm install",
