@@ -1,14 +1,42 @@
 openapi: 3.0.1
 info:
-  title: Tat-Uslugi Workflow API
-  description: Предоставляет доступ к госслугам Республики Татарстан
+  title: Государственные услуги в Республике Татарстан.
+  description: Предоставляет доступ к гос услугам Республики Татарстан
   version: 1.0.0
 servers:
-- url: http://localhost:8090
+- url: http://localhost:8084
 paths:
+  /rosreestr:
+    get:
+      tags:
+      - rosreestr
+      summary: Получить кадастровый номер (внешний - заглушка)
+      operationId: getRosreestr
+      parameters:
+      - name: address
+        in: path
+        description: Адрес объекта
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RosreestrResp'
+        404:
+          description: Request not found
+          content: {}
+      x-swagger-router-controller: Default
   /services:
     get:
-      summary: Возвращает список всех поддерживаемых сервисов
+      tags:
+      - services
+      summary: Возвращает список всех поддерживаемых услуг
       operationId: getServices
       responses:
         200:
@@ -24,10 +52,12 @@ paths:
           description: Invalid input
           content: {}
       x-swagger-router-controller: Default
-  /requests:
+  /process:
     post:
-      summary: Запустить новую услугу на выполнение
-      operationId: newRequest
+      tags:
+      - BPMN
+      summary: Инициировать исполнение услуги (Работает только с постмана)
+      operationId: newProcess
       requestBody:
         description: Initiates new request
         content:
@@ -40,13 +70,16 @@ paths:
           description: Invalid input
           content: {}
       x-swagger-router-controller: Default
-  /requests/{id}:
+  /process/{id}:
     get:
-      operationId: getRequestById
+      tags:
+      - BPMN
+      summary: Получить BPMN описание конкретной услуги
+      operationId: getProcessById
       parameters:
       - name: id
         in: path
-        description: ID of the request to get the sattus
+        description: Definition ID процесса
         required: true
         style: simple
         explode: false
@@ -65,6 +98,16 @@ paths:
       x-swagger-router-controller: Default
 components:
   schemas:
+    RosreestrResp:
+      required:
+      - kadastrNumber
+      type: object
+      properties:
+        kadastrNumber:
+          type: string
+          example: 12345:3455:33
+      example:
+        kadastrNumber: 12345:3455:33
     Service:
       type: object
       properties:
