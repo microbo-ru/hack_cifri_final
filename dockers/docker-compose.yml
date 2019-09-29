@@ -52,6 +52,15 @@ services:
     ports:
       - $SERVER_PORT:80
 
+  swagger-ui:
+    image: swaggerapi/swagger-ui
+    ports:
+      - $SWAGGER_UI_PORT:8080
+    volumes:
+      - ./../doc/facade_api.json:/facade_api.json
+    environment:
+      SWAGGER_JSON: /facade_api.json
+
   3dparty_api:
     image: node:8.16.1-alpine
     volumes:
@@ -59,7 +68,7 @@ services:
     working_dir: /usr/src/app
     command: npm start
     ports:
-      - $SERVICES_FACADE_PORT:8080
+      - $SERVICES_FACADE_PORT:8084
 
 volumes:
   rest_server:
