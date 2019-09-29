@@ -1,6 +1,8 @@
 <template>
   <v-container>
-    <v-col col="12" md="3"></v-col>
+    <v-row>
+      <v-img src="https://cdn.vuetifyjs.com/images/parallax/material.jpg"></v-img>
+    </v-row>
     <v-row>
       <v-col>
         <v-card class="mx-auto" width="344" height="250px" elevation="18">
@@ -34,7 +36,7 @@
             <div class="text--primary">Нужна чтобы пользоваться благами</div>
           </v-card-text>
           <v-card-actions>
-            <v-btn @click="$emit('UserForm')">Подробнее</v-btn>
+            <v-btn text @click="$emit('UserForm')">Подробнее</v-btn>
           </v-card-actions>
         </v-card>
       </v-col>

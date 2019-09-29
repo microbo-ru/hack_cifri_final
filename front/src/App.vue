@@ -75,6 +75,7 @@ export default {
     this.$vuetify.theme.dark = false;
     this.$vuetify.theme.background = "grey";
     this.$store.dispatch("fetchForms");
+    this.$store.dispatch("fetchBadForms");
   }
 };
 </script>

@@ -9,6 +9,7 @@ const url = `${server_url}:${server_port}/forms`;
 export default new Vuex.Store({
   state: {
     forms: [],
+    bad_forms: [],
     activeForm: {},
     activeFormNumber: 0,
     fetched: false
@@ -44,6 +45,9 @@ export default new Vuex.Store({
       state.activeFormNumber = state.forms.length - 1;
       state.activeForm = state.forms[state.activeFormNumber];
       axios.post(`${url}`, state.activeForm);
+    },
+    fetchedBadForms(state, payload) {
+      state.bad_forms = Array.from(payload["res"]["data"]);
     }
   },
   actions: {
@@ -56,6 +60,11 @@ export default new Vuex.Store({
       let id = store.state.activeForm["id"];
       console.log(store.state.activeForm);
       axios.put(`${url}/${id}`, store.state.activeForm);
+    },
+    async fetchBadForms() {
+      let res = await axios.get(`${server_url}:${server_port}/service`);
+      console.log(res);
+      this.commit("fetchedBadForms", { res });
     }
   }
 });
