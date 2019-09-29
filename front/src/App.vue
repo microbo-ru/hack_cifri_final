@@ -26,11 +26,7 @@
         <span class="mr-2">code</span>
       </v-btn>
     </v-app-bar>
-    <v-parallax
-      src="https://cdn.vuetifyjs.com/images/parallax/material.jpg"
-      z-index="-1"
-      height="100%"
-    >
+    <v-parallax src="https://cdn.vuetifyjs.com/images/backgrounds/vbanner.jpg" height="100%">
       <v-content height="100%">
         <v-container v-if="activeElement == 'NewForm'">
           <NewForm v-if="fetched" />
