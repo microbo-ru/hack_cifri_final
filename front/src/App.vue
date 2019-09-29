@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <v-app-bar app>
+    <v-app-bar app dark>
       <v-btn text large @click="activeElement = 'Home'">GOSTATAR</v-btn>
 
       <v-btn
@@ -26,26 +26,25 @@
         <span class="mr-2">code</span>
       </v-btn>
     </v-app-bar>
-    <v-parallax src="https://cdn.vuetifyjs.com/images/backgrounds/vbanner.jpg" height="100%">
-      <v-content height="100%">
-        <v-container v-if="activeElement == 'NewForm'">
-          <NewForm v-if="fetched" />
-        </v-container>
-        <v-container v-if="activeElement == 'Home'">
-          <Home
-            @UserForm="activeElement = 'UserForm'"
-            @NewForm="activeElement = 'NewForm'"
-            @Routes="activeElement = 'Routes'"
-          />
-        </v-container>
-        <v-container v-if="activeElement == 'UserForm'">
-          <UserForm />
-        </v-container>
-        <v-container v-if="activeElement == 'Routes'">
-          <WorkProcess />
-        </v-container>
-      </v-content>
-    </v-parallax>
+
+    <v-content height="100%" background-color="grey">
+      <v-container v-if="activeElement == 'NewForm'">
+        <NewForm v-if="fetched" />
+      </v-container>
+      <v-container v-if="activeElement == 'Home'">
+        <Home
+          @UserForm="activeElement = 'UserForm'"
+          @NewForm="activeElement = 'NewForm'"
+          @Routes="activeElement = 'Routes'"
+        />
+      </v-container>
+      <v-container v-if="activeElement == 'UserForm'">
+        <UserForm />
+      </v-container>
+      <v-container v-if="activeElement == 'Routes'">
+        <WorkProcess />
+      </v-container>
+    </v-content>
   </v-app>
 </template>
 
@@ -73,6 +72,7 @@ export default {
     }
   },
   created() {
+    this.$vuetify.theme.dark = true;
     this.$store.dispatch("fetchForms");
   }
 };

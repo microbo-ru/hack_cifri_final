@@ -3,7 +3,7 @@
     <v-row>
       <v-container v-if="selected_form != -1">
         <FormGenerator :schema="form_schema" v-model="form_data" />
-        <v-btn @click="sendForm">Отправить</v-btn>
+        <v-btn dark @click="sendForm">Отправить</v-btn>
       </v-container>
     </v-row>
     <v-row>
