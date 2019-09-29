@@ -26,25 +26,30 @@
         <span class="mr-2">code</span>
       </v-btn>
     </v-app-bar>
-
-    <v-content>
-      <v-container v-if="activeElement == 'NewForm'">
-        <NewForm v-if="fetched" />
-      </v-container>
-      <v-container v-if="activeElement == 'Home'">
-        <Home
-          @UserForm="activeElement = 'UserForm'"
-          @NewForm="activeElement = 'NewForm'"
-          @Routes="activeElement = 'Routes'"
-        />
-      </v-container>
-      <v-container v-if="activeElement == 'UserForm'">
-        <UserForm />
-      </v-container>
-      <v-container v-if="activeElement == 'Routes'">
-        <WorkProcess />
-      </v-container>
-    </v-content>
+    <v-parallax
+      src="https://cdn.vuetifyjs.com/images/parallax/material.jpg"
+      z-index="-1"
+      height="100%"
+    >
+      <v-content height="100%">
+        <v-container v-if="activeElement == 'NewForm'">
+          <NewForm v-if="fetched" />
+        </v-container>
+        <v-container v-if="activeElement == 'Home'">
+          <Home
+            @UserForm="activeElement = 'UserForm'"
+            @NewForm="activeElement = 'NewForm'"
+            @Routes="activeElement = 'Routes'"
+          />
+        </v-container>
+        <v-container v-if="activeElement == 'UserForm'">
+          <UserForm />
+        </v-container>
+        <v-container v-if="activeElement == 'Routes'">
+          <WorkProcess />
+        </v-container>
+      </v-content>
+    </v-parallax>
   </v-app>
 </template>
 

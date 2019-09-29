@@ -49,12 +49,13 @@ export default {
           value: this.form_data[key]
         };
       }
-
-      let url = "http://84.201.143.226:8080/engine-rest/process-definition";
+      let camoda_url = process.env.VUE_APP_SERVER_URL;
+      let url = `http://${camoda_url}:8080/engine-rest/process-definition`;
       let res = await axios.get(`${url}`);
+      console.log(res);
       let processDefinition = res.data[2].id;
       //todo: demo hack
-      req["kadastrNumber"] = {"type": "String", "value": ""};
+      req["kadastrNumber"] = { type: "String", value: "" };
       let opt = {
         headers: {
           "Content-type": "application/json"
@@ -63,7 +64,7 @@ export default {
       axios
         .post(`${url}/${processDefinition}/start`, opt, {
           variables: req,
-          businessKey: "5976"//todo: demo hack
+          businessKey: "5976" //todo: demo hack
         })
         .then(res => console.log(res))
         .catch(console.log);
