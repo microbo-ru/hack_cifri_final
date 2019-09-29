@@ -5,7 +5,8 @@ const word_map = {
   фио: "name",
   телефон: "phone",
   адрес: "adress",
-  имя_гражданина: "citizenName"
+  имя_гражданина: "citizenName",
+  пол: "sex"
 };
 
 const reverse_word_map = {
@@ -13,7 +14,8 @@ const reverse_word_map = {
   name: "фио",
   phone: "телефон",
   adress: "адрес",
-  citizenName: "имя_гражданина"
+  citizenName: "имя_гражданина",
+  sex: "пол"
 };
 
 const type_map = {
@@ -39,6 +41,9 @@ const special_map = {
   },
   adress: {
     label: "введиете свой домашний адрес"
+  },
+  sex: {
+    label: "Введите ваш пол"
   }
 };
 

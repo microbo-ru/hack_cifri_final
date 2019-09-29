@@ -6,7 +6,7 @@
           <label>{{label}}</label>
         </v-col>
         <v-col>
-          <input
+          <v-text-field
             type="text"
             :name="name"
             :value="value"
