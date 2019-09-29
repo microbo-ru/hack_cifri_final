@@ -28,19 +28,19 @@ services:
       - POSTGRES_USER=camunda
       - POSTGRES_PASSWORD=camunda
 
-#  front:
-#    image: ebiven/vue-cli
-#    depends_on:
-#      - server
-#    env_file: .env
-#    environment:
-#      - VUE_APP_SERVER_PORT=$SERVER_PORT
-#      - VUE_APP_SERVER_URL=$VUE_APP_SERVER_URL
-#    command: /bin/sh -c "npm install && npm run serve"
-#    volumes:
-#      - ./../front:/code
-#    ports:
-#      - $FRONT_PORT:8080
+  front:
+    image: ebiven/vue-cli
+    depends_on:
+      - server
+    env_file: .env
+    environment:
+      - VUE_APP_SERVER_PORT=$SERVER_PORT
+      - VUE_APP_SERVER_URL=$VUE_APP_SERVER_URL
+    command: /bin/sh -c "npm install && npm run serve"
+    volumes:
+      - ./../front:/code
+    ports:
+      - $FRONT_PORT:8080
 
   server:
     image: clue/json-server
