@@ -28,7 +28,7 @@
     </v-app-bar>
 
     <v-content
-      v-bind:style="activeElement == 'UserForm' ? { backgroundImage: 'url(https://www.kzn.ru/local/templates/kzn/images/work-default.jpg)' }:{} "
+      v-bind:style="activeElement == 'UserForm' && !active ? { backgroundImage: 'url(https://www.kzn.ru/local/templates/kzn/images/work-default.jpg)' }:{} "
       height="100%"
       style="background-image: url()"
     >
@@ -73,6 +73,10 @@ export default {
   computed: {
     fetched() {
       return this.$store.state.fetched;
+    },
+    active() {
+      if (this.$store.state.activeForm != -1) return false;
+      else return true;
     }
   },
   created() {
