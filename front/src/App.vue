@@ -27,7 +27,11 @@
       </v-btn>
     </v-app-bar>
 
-    <v-content height="100%" background-color="grey">
+    <v-content
+      v-bind:style="activeElement == 'UserForm' ? { backgroundImage: 'url(https://www.kzn.ru/local/templates/kzn/images/work-default.jpg)' }:{} "
+      height="100%"
+      style="background-image: url()"
+    >
       <v-container v-if="activeElement == 'NewForm'">
         <NewForm v-if="fetched" />
       </v-container>
@@ -57,7 +61,7 @@ export default {
   name: "App",
   data() {
     return {
-      activeElement: "Home"
+      activeElement: "UserForm"
     };
   },
   components: {
