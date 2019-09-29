@@ -31,7 +31,7 @@ paths:
         404:
           description: Request not found
           content: {}
-      x-swagger-router-controller: Default
+      x-swagger-router-controller: Rosreestr
   /services:
     get:
       tags:
@@ -51,7 +51,7 @@ paths:
         405:
           description: Invalid input
           content: {}
-      x-swagger-router-controller: Default
+      x-swagger-router-controller: Services
   /process:
     post:
       tags:
@@ -69,7 +69,7 @@ paths:
         405:
           description: Invalid input
           content: {}
-      x-swagger-router-controller: Default
+      x-swagger-router-controller: BPMN
   /process/{id}:
     get:
       tags:
@@ -95,7 +95,7 @@ paths:
         404:
           description: Request not found
           content: {}
-      x-swagger-router-controller: Default
+      x-swagger-router-controller: BPMN
 components:
   schemas:
     RosreestrResp:
