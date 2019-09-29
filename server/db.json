@@ -1,77 +1,611 @@
 {
-  "forms": [
-    {
-      "id": 1,
-      "title": "Паспорт",
-      "description": "Форма для получения паспорта",
-      "schema": [
+    "forms": [
         {
-          "fieldType": "TextInput",
-          "placeholder": "Фио",
-          "label": "Введите фио",
-          "name": "name"
+            "id": 1,
+            "title": "Паспорт",
+            "description": "Форма для получения паспорта",
+            "schema": [
+                {
+                    "fieldType": "TextInput",
+                    "placeholder": "Фио",
+                    "label": "Введите фио",
+                    "name": "name"
+                },
+                {
+                    "fieldType": "NumberInput",
+                    "placeholder": "Паспорт",
+                    "name": "passport",
+                    "label": "Введите паспортные данные",
+                    "minValue": 1000000000
+                }
+            ]
         },
         {
-          "fieldType": "NumberInput",
-          "placeholder": "Паспорт",
-          "name": "passport",
-          "label": "Введите паспортные данные",
-          "minValue": 1000000000
-        }
-      ]
-    },
-    {
-      "id": 2,
-      "title": "Имя",
-      "description": "Форма для получения имени",
-      "schema": [
-        {
-          "fieldType": "TextInput",
-          "placeholder": "имя",
-          "label": "Введите имя",
-          "name": "dream_name"
-        }
-      ]
-    },
-    {
-      "title": "Пол",
-      "id": 995658,
-      "schema": [
-        {
-          "fieldType": "TextInput",
-          "label": "Какой пол желаете?",
-          "name": "sex",
-          "placeholder": "sexs"
-        }
-      ]
-    },
-    {
-      "id": 123649,
-      "title": "Кадастр",
-      "description": "Кадастр",
-      "schema": [
-        {
-          "fieldType": "TextInput",
-          "label": "Введите ФИО",
-          "name": "citizenName",
-          "placeholder": "ФИО"
+            "id": 2,
+            "title": "Имя",
+            "description": "Форма для получения имени",
+            "schema": [
+                {
+                    "fieldType": "TextInput",
+                    "placeholder": "имя",
+                    "label": "Введите имя",
+                    "name": "dream_name"
+                }
+            ]
         },
         {
-          "name": "requestRegistredAt"
+            "title": "Пол",
+            "id": 995658,
+            "schema": [
+                {
+                    "fieldType": "TextInput",
+                    "label": "Какой пол желаете?",
+                    "name": "sex",
+                    "placeholder": "sexs"
+                }
+            ]
         },
         {
-          "fieldType": "TextInput",
-          "label": "Введите адрес",
-          "name": "address",
-          "placeholder": "адрес"
-        },
-        {
-          "fieldType": "TextInput",
-          "label": "Введите Паспорт",
-          "name": "passport",
-          "placeholder": "паспорт"
+            "id": 123649,
+            "title": "Кадастр",
+            "description": "Кадастр",
+            "schema": [
+                {
+                    "fieldType": "TextInput",
+                    "label": "Введите ФИО",
+                    "name": "citizenName",
+                    "placeholder": "ФИО"
+                },
+                {
+                    "name": "requestRegistredAt"
+                },
+                {
+                    "fieldType": "TextInput",
+                    "label": "Введите адрес",
+                    "name": "address",
+                    "placeholder": "адрес"
+                },
+                {
+                    "fieldType": "TextInput",
+                    "label": "Введите Паспорт",
+                    "name": "passport",
+                    "placeholder": "паспорт"
+                }
+            ]
         }
-      ]
-    }
-  ]
+    ],
+    "service": [
+        {
+            "id": 1,
+            "title": "Заплатить за квартиру, внести показания счетчиков",
+            "cathegory": "Оплата коммунальных услуг",
+            "order": "Main",
+            "schema": []
+        },
+        {
+            "id": 2,
+            "title": "Заплатить за электроэнергию, передать показания счетчиков",
+            "cathegory": "Оплата коммунальных услуг",
+            "order": "Main",
+            "schema": []
+        },
+        {
+            "id": 3,
+            "title": "Заплатить за тепловую энергию",
+            "cathegory": "Оплата коммунальных услуг",
+            "order": "Main",
+            "schema": []
+        },
+        {
+            "id": 4,
+            "title": "Заплатить за газ, подать показания счетчиков",
+            "cathegory": "Оплата коммунальных услуг",
+            "order": "Main",
+            "schema": []
+        },
+        {
+            "id": 5,
+            "title": "Заплатить за воду г.Казань",
+            "cathegory": "Оплата коммунальных услуг",
+            "order": "Main",
+            "schema": []
+        },
+        {
+            "id": 6,
+            "title": "Оплата сигнализации квартиры",
+            "cathegory": "Оплата коммунальных услуг",
+            "order": "Main",
+            "schema": []
+        },
+        {
+            "id": 7,
+            "title": "Заплатить за домофон",
+            "cathegory": "Оплата коммунальных услуг",
+            "order": "Main",
+            "schema": []
+        },
+        {
+            "id": 8,
+            "title": "Записаться на прием",
+            "cathegory": "Здравоохранение Республики Татарстан",
+            "order": "Main",
+            "schema": []
+        },
+        {
+            "id": 9,
+            "title": "Переход на портал здравоохранения",
+            "cathegory": "Здравоохранение Республики Татарстан",
+            "order": "Main",
+            "schema": []
+        },
+        {
+            "id": 10,
+            "title": "Дежурные аптеки",
+            "cathegory": "Здравоохранение Республики Татарстан",
+            "order": "Main",
+            "schema": []
+        },
+        {
+            "id": 11,
+            "title": "Узнать о наличии и стоимости лекарств в аптеках",
+            "cathegory": "Здравоохранение Республики Татарстан",
+            "order": "Main",
+            "schema": []
+        },
+        {
+            "id": 12,
+            "title": "Стань донором",
+            "cathegory": "Здравоохранение Республики Татарстан",
+            "order": "Main",
+            "schema": []
+        },
+        {
+            "id": 13,
+            "title": "Узнать и оплатить штрафы за нарушения ПДД",
+            "cathegory": "ГИБДД и автоуслуги",
+            "order": "Main",
+            "schema": []
+        },
+        {
+            "id": 14,
+            "title": "Подписка на электронные постановления",
+            "cathegory": "ГИБДД и автоуслуги",
+            "order": "Main",
+            "schema": []
+        },
+        {
+            "id": 15,
+            "title": "Админкомиссия. Штрафы за муниципальную парковку, нарушения в сфере благоустройства",
+            "cathegory": "ГИБДД и автоуслуги",
+            "order": "Main",
+            "schema": []
+        },
+        {
+            "id": 16,
+            "title": "Регистрационные действия",
+            "cathegory": "ГИБДД и автоуслуги",
+            "order": "Main",
+            "schema": []
+        },
+        {
+            "id": 17,
+            "title": "Водительское удостоверение",
+            "cathegory": "ГИБДД и автоуслуги",
+            "order": "Main",
+            "schema": []
+        },
+        {
+            "id": 18,
+            "title": "Технический осмотр",
+            "cathegory": "ГИБДД и автоуслуги",
+            "order": "Main",
+            "schema": []
+        },
+        {
+            "id": 19,
+            "title": "Внесение изменений в конструкцию ТС",
+            "cathegory": "ГИБДД и автоуслуги",
+            "order": "Main",
+            "schema": []
+        },
+        {
+            "id": 20,
+            "title": "Подать заявление на учет в детский сад",
+            "cathegory": "Дошкольное образование",
+            "order": "Main",
+            "schema": []
+        },
+        {
+            "id": 21,
+            "title": "Проверить статус поданного ранее заявления",
+            "cathegory": "Дошкольное образование",
+            "order": "Main",
+            "schema": []
+        },
+        {
+            "id": 22,
+            "title": "Изменить детский сад в поданном ранее заявлении",
+            "cathegory": "Дошкольное образование",
+            "order": "Main",
+            "schema": []
+        },
+        {
+            "id": 23,
+            "title": "Проверить начисления и оплатить услуги детского сада",
+            "cathegory": "Дошкольное образование",
+            "order": "Main",
+            "schema": []
+        },
+        {
+            "id": 24,
+            "title": "Записаться на прием",
+            "cathegory": "Дошкольное образование",
+            "order": "Main",
+            "schema": []
+        },
+        {
+            "id": 25,
+            "title": "Заплатить за сотовую связь",
+            "cathegory": "Оплата услуг связи и телевидения",
+            "order": "Main",
+            "schema": []
+        },
+        {
+            "id": 26,
+            "title": "Заплатить за домашний телефон",
+            "cathegory": "Оплата услуг связи и телевидения",
+            "order": "Main",
+            "schema": []
+        },
+        {
+            "id": 27,
+            "title": "Заплатить за интернет",
+            "cathegory": "Оплата услуг связи и телевидения",
+            "order": "Main",
+            "schema": []
+        },
+        {
+            "id": 28,
+            "title": "Заплатить за телевидение",
+            "cathegory": "Оплата услуг связи и телевидения",
+            "order": "Main",
+            "schema": []
+        },
+        {
+            "id": 29,
+            "title": "Подача заявления на назначение пособий, субсидий, компенсаций",
+            "cathegory": "Социальная защита",
+            "order": "Main",
+            "schema": []
+        },
+        {
+            "id": 30,
+            "title": "Запись на прием к специалисту соцзащиты",
+            "cathegory": "Социальная защита",
+            "order": "Main",
+            "schema": []
+        },
+        {
+            "id": 31,
+            "title": "Субсидии-льготы на оплату ЖКХ",
+            "cathegory": "Социальная защита",
+            "order": "Main",
+            "schema": []
+        },
+        {
+            "id": 32,
+            "title": "Оплатить налоги",
+            "cathegory": "Налоговая служба",
+            "order": "Main",
+            "schema": []
+        },
+        {
+            "id": 33,
+            "title": "Налоговый калькулятор",
+            "cathegory": "Налоговая служба",
+            "order": "Main",
+            "schema": []
+        },
+        {
+            "id": 34,
+            "title": "Подать заявлние о постановке на налоговый учет",
+            "cathegory": "Налоговая служба",
+            "order": "Main",
+            "schema": []
+        },
+        {
+            "id": 35,
+            "title": "Проверить оценки детей",
+            "cathegory": "Образование",
+            "order": "Main",
+            "schema": []
+        },
+        {
+            "id": 36,
+            "title": "Общеобразовательные учреждения",
+            "cathegory": "Образование",
+            "order": "Main",
+            "schema": []
+        },
+        {
+            "id": 37,
+            "title": "Среднее профессиональное образование",
+            "cathegory": "Образование",
+            "order": "Main",
+            "schema": []
+        },
+        {
+            "id": 38,
+            "title": "Образовательные программы",
+            "cathegory": "Образование",
+            "order": "Main",
+            "schema": []
+        },
+        {
+            "id": 39,
+            "title": "Дополнительное образование",
+            "cathegory": "Образование",
+            "order": "Main",
+            "schema": []
+        },
+        {
+            "id": 40,
+            "title": "ЗАГС",
+            "cathegory": "Дополнительное",
+            "order": "Secondary",
+            "schema": []
+        },
+        {
+            "id": 41,
+            "title": "Пенсионный фонд",
+            "cathegory": "Дополнительное",
+            "order": "Secondary",
+            "schema": []
+        },
+        {
+            "id": 42,
+            "title": "Социальная ипотека",
+            "cathegory": "Дополнительное",
+            "order": "Secondary",
+            "schema": []
+        },
+        {
+            "id": 43,
+            "title": "Строительство",
+            "cathegory": "Дополнительное",
+            "order": "Secondary",
+            "schema": []
+        },
+        {
+            "id": 44,
+            "title": "Оплата госпошлин и штрафов",
+            "cathegory": "Дополнительное",
+            "order": "Secondary",
+            "schema": []
+        },
+        {
+            "id": 45,
+            "title": "Регистрация в ЕСИА",
+            "cathegory": "Дополнительное",
+            "order": "Secondary",
+            "schema": []
+        },
+        {
+            "id": 46,
+            "title": "Школьные оценки",
+            "cathegory": "Дополнительное",
+            "order": "Secondary",
+            "schema": []
+        },
+        {
+            "id": 47,
+            "title": "Школьное питание",
+            "cathegory": "Дополнительное",
+            "order": "Secondary",
+            "schema": []
+        },
+        {
+            "id": 48,
+            "title": "Паспорт",
+            "cathegory": "Дополнительное",
+            "order": "Secondary",
+            "schema": []
+        },
+        {
+            "id": 49,
+            "title": "Судебные приставы",
+            "cathegory": "Дополнительное",
+            "order": "Secondary",
+            "schema": []
+        },
+        {
+            "id": 50,
+            "title": "Билеты",
+            "cathegory": "Дополнительное",
+            "order": "Secondary",
+            "schema": []
+        },
+        {
+            "id": 51,
+            "title": "Подписка на издания",
+            "cathegory": "Дополнительное",
+            "order": "Secondary",
+            "schema": []
+        },
+        {
+            "id": 52,
+            "title": "Справка из архива",
+            "cathegory": "Дополнительное",
+            "order": "Secondary",
+            "schema": []
+        },
+        {
+            "id": 53,
+            "title": "Исполком г.Казани",
+            "cathegory": "Дополнительное",
+            "order": "Secondary",
+            "schema": []
+        },
+        {
+            "id": 54,
+            "title": "Самообложение",
+            "cathegory": "Дополнительное",
+            "order": "Secondary",
+            "schema": []
+        },
+        {
+            "id": 55,
+            "title": "Админкомиссия",
+            "cathegory": "Дополнительное",
+            "order": "Secondary",
+            "schema": []
+        },
+        {
+            "id": 56,
+            "title": "Земля многодетным",
+            "cathegory": "Дополнительное",
+            "order": "Secondary",
+            "schema": []
+        },
+        {
+            "id": 57,
+            "title": "Парковка",
+            "cathegory": "Дополнительное",
+            "order": "Secondary",
+            "schema": []
+        },
+        {
+            "id": 58,
+            "title": "Благотворительность",
+            "cathegory": "Дополнительное",
+            "order": "Secondary",
+            "schema": []
+        },
+        {
+            "id": 59,
+            "title": "Госалкоинспекция",
+            "cathegory": "Дополнительное",
+            "order": "Secondary",
+            "schema": []
+        },
+        {
+            "id": 60,
+            "title": "Минэкологии РТ",
+            "cathegory": "Дополнительное",
+            "order": "Secondary",
+            "schema": []
+        },
+        {
+            "id": 61,
+            "title": "Труд и занятость",
+            "cathegory": "Дополнительное",
+            "order": "Secondary",
+            "schema": []
+        },
+        {
+            "id": 62,
+            "title": "Опека (попечительство)",
+            "cathegory": "Дополнительное",
+            "order": "Secondary",
+            "schema": []
+        },
+        {
+            "id": 63,
+            "title": "Эвакуация",
+            "cathegory": "Дополнительное",
+            "order": "Secondary",
+            "schema": []
+        },
+        {
+            "id": 64,
+            "title": "Услуги Росреестра",
+            "cathegory": "Дополнительное",
+            "order": "Secondary",
+            "schema": []
+        },
+        {
+            "id": 65,
+            "title": "Такси",
+            "cathegory": "Дополнительное",
+            "order": "Secondary",
+            "schema": []
+        },
+        {
+            "id": 66,
+            "title": "Апостиль на документе об образовании",
+            "cathegory": "Дополнительное",
+            "order": "Secondary",
+            "schema": []
+        },
+        {
+            "id": 67,
+            "title": "МФЦ \"Мои документы\" ",
+            "cathegory": "Дополнительное",
+            "order": "Secondary",
+            "schema": []
+        },
+        {
+            "id": 68,
+            "title": "БТИ",
+            "cathegory": "Дополнительное",
+            "order": "Secondary",
+            "schema": []
+        },
+        {
+            "id": 69,
+            "title": "Татэнергосбыт",
+            "cathegory": "Дополнительное",
+            "order": "Secondary",
+            "schema": []
+        },
+        {
+            "id": 70,
+            "title": "Электрические сети",
+            "cathegory": "Дополнительное",
+            "order": "Secondary",
+            "schema": []
+        },
+        {
+            "id": 71,
+            "title": "Иск в суд",
+            "cathegory": "Дополнительное",
+            "order": "Secondary",
+            "schema": []
+        },
+        {
+            "id": 72,
+            "title": "Роспотребнадзор",
+            "cathegory": "Дополнительное",
+            "order": "Secondary",
+            "schema": []
+        },
+        {
+            "id": 73,
+            "title": "Грант \"Алгарыш\"",
+            "cathegory": "Дополнительное",
+            "order": "Secondary",
+            "schema": []
+        },
+        {
+            "id": 74,
+            "title": "Капитальный ремонт",
+            "cathegory": "Дополнительное",
+            "order": "Secondary",
+            "schema": []
+        },
+        {
+            "id": 75,
+            "title": "МВД",
+            "cathegory": "Дополнительное",
+            "order": "Secondary",
+            "schema": []
+        },
+        {
+            "id": 76,
+            "title": "Библиотечный каталог",
+            "cathegory": "Дополнительное",
+            "order": "Secondary",
+            "schema": []
+        }
+    ]
 }
