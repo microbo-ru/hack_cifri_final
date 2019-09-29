@@ -40,7 +40,7 @@ println "STATUS_API_URL = " + api;
 
 println (requestId + ": Проверка данных заявки");
 
-def kadastrSpecified = (kadastrNumber == "");
+def kadastrSpecified = (kadastrNumber != "");
 execution.setVariable("kadastrSpecified", kadastrSpecified);
 
 LocalDateTime t = LocalDateTime.now();
