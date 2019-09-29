@@ -13,6 +13,8 @@ services:
       - DB_USERNAME=camunda
       - DB_PASSWORD=camunda
       - WAIT_FOR=db:$POSTGRES_PORT
+      - STATUS_API_URL=localhost:$SERVER_PORT/status
+      - SMS_API_KEY=$SMS_API_KEY
 
   db:
     image: postgres
