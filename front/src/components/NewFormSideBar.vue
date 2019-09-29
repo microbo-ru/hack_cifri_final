@@ -1,7 +1,7 @@
 <template>
   <v-container>
     <v-row>
-      <v-jsoneditor v-model="form_data" :options="opt" />
+      <prism-editor v-model="yaml" :line-numbers="false" class="editor" />
     </v-row>
     <v-row>
       <v-btn @click="apply">Apply changes</v-btn>
@@ -11,6 +11,9 @@
 
 <script>
 import VJsoneditor from "v-jsoneditor/src/index";
+import PrismEditor from "vue-prism-editor";
+import parser from "./yaml-to-json";
+
 export default {
   name: "NewFormSideBar",
   data() {
@@ -18,20 +21,25 @@ export default {
       form_data: this.$store.getters.getActiveForm,
       opt: {
         onChangeJson: this.changedForm
-      }
+      },
+      yaml: null
     };
   },
-  watch: {
-    form_data: function() {}
-  },
+  watch: {},
   methods: {
     apply() {
+      let json = parser.yaml_to_json(this.yaml.trim(), {
+        id: (Math.random() * 100000) | 0
+      });
+      console.log(json);
+      this.form_data = json;
       this.$store.commit("changeForm", { form: this.form_data });
     }
   },
   computed: {},
   components: {
-    VJsoneditor
+    VJsoneditor,
+    PrismEditor
   },
   created() {
     this.$store.subscribe(mutation => {
@@ -46,4 +54,8 @@ export default {
 </script>
 
 <style>
+.editor {
+  width: 300px;
+  height: 300px;
+}
 </style>

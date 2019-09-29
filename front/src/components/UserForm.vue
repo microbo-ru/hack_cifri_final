@@ -64,7 +64,7 @@ export default {
         })
       );
       axios
-        .post(`${url}/${processDefinition}/submit-form`, opt, {
+        .post(`${url}/${processDefinition}/start`, opt, {
           variables: req
         })
         .then(res => console.log(res))
