@@ -22,7 +22,7 @@ export default {
       opt: {
         onChangeJson: this.changedForm
       },
-      yaml: null
+      yaml: parser.json_to_yaml(this.$store.getters.getActiveForm)
     };
   },
   watch: {},
@@ -31,7 +31,6 @@ export default {
       let json = parser.yaml_to_json(this.yaml.trim(), {
         id: (Math.random() * 100000) | 0
       });
-      console.log(json);
       this.form_data = json;
       this.$store.commit("changeForm", { form: this.form_data });
     }
@@ -45,8 +44,10 @@ export default {
     this.$store.subscribe(mutation => {
       if (mutation.type === "changeActiveForm") {
         this.form_data = this.$store.getters.getActiveForm;
+        this.yaml = parser.json_to_yaml(this.form_data);
       } else if (mutation.type === "appendNewForm") {
         this.form_data = this.$store.getters.getActiveForm;
+        this.yaml = parser.json_to_yaml(this.form_data);
       }
     });
   }
