@@ -30,6 +30,18 @@ docker-compose up -d
 
 End with an example of getting some data out of the system or using it for a little demo
 
+## Общее описание
+
+### Список услуг
+![](doc/camunda.png?raw=true)
+
+### Модель бизнес-процессов
+![](doc/camunda_flow.png?raw=true)
+
+### АПИ
+![](doc/api_proxy.png?raw=true)
+
+
 ## Deployment
 
 
